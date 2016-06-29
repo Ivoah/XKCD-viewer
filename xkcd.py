@@ -26,7 +26,7 @@ def next(sender):
 
 #@ui.in_background
 def slider_changed(sender):
-    load_comic(sender.superview, int(latest*sender.value) if int(latest*sender.value) > 0 else 1)
+    load_comic(sender.superview, max(int(latest*sender.value), 1))
 
 def alt(sender):
     comic = requests.get('http://xkcd.com/{}/info.0.json'.format(sender.superview.current)).json()
