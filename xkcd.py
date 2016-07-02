@@ -16,15 +16,15 @@ def load_comic(view, num):
         #view['comic'].load_from_url(comic['img'])
         view['comic'].image = ui.Image.from_data(requests.get(comic['img']).content)
 
-#@ui.in_background
+@ui.in_background
 def prev(sender): 
     load_comic(sender.superview, sender.superview.current - 1)
 
-#@ui.in_background
+@ui.in_background
 def next(sender):
     load_comic(sender.superview, sender.superview.current + 1)
 
-#@ui.in_background
+@ui.in_background
 def slider_changed(sender):
     load_comic(sender.superview, max(int(latest*sender.value), 1))
 
@@ -32,7 +32,7 @@ def alt(sender):
     comic = requests.get('http://xkcd.com/{}/info.0.json'.format(sender.superview.current)).json()
     dialogs.alert(comic['title'], comic['alt'])
 
-#@ui.in_background
+@ui.in_background
 def rand(sender):
     load_comic(sender.superview, random.randint(1, latest))
 
