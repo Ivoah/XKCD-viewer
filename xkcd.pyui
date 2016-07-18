@@ -16,7 +16,7 @@
           "name" : "title",
           "frame" : "{{45, 104}, {150, 32}}",
           "uuid" : "DF42035C-C23C-4707-9DBA-E829F44C8EEA",
-          "text" : "Title",
+          "text" : "Loading comic...",
           "alignment" : "center",
           "class" : "Label",
           "font_size" : 18,
@@ -81,7 +81,7 @@
         }
       },
       {
-        "selected" : true,
+        "selected" : false,
         "frame" : "{{6, 160}, {228, 34}}",
         "class" : "Slider",
         "nodes" : [
@@ -106,11 +106,11 @@
 
         ],
         "attributes" : {
-          "name" : "comic",
+          "class" : "ImageView",
           "frame" : "{{70, 70}, {100, 100}}",
           "uuid" : "30A5BD18-2EB2-4362-A92A-137E5A8426A7",
+          "name" : "comic",
           "custom_attributes" : "{\n    'content_mode': ui.CONTENT_SCALE_ASPECT_FIT\n}",
-          "class" : "ImageView",
           "flex" : "WH"
         }
       },
@@ -149,15 +149,31 @@
           "font_size" : 15,
           "name" : "btn_random"
         }
+      },
+      {
+        "selected" : false,
+        "frame" : "{{202, 6}, {32, 32}}",
+        "class" : "View",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "name" : "gear",
+          "frame" : "{{70, 70}, {100, 100}}",
+          "uuid" : "3EF5389B-0EF5-4434-A578-F706E065BCA1",
+          "custom_class" : "ui.ActivityIndicator",
+          "class" : "View",
+          "flex" : "LB"
+        }
       }
     ],
     "attributes" : {
       "flex" : "",
       "enabled" : true,
       "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
-      "name" : "XKCD",
       "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
-      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)"
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "XKCD"
     }
   }
 ]
