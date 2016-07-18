@@ -10,7 +10,8 @@ import json
 def get_info(num):
     fp = 'cache/{}.json'.format(num)
     if os.path.exists(fp):
-        return json.load(open(fp))
+        with open(fp) as f:
+            return json.load(f)
     else:
         try:
             req = requests.get('http://xkcd.com/{}/info.0.json'.format(num))
@@ -19,7 +20,8 @@ def get_info(num):
         if req.status_code != 200:
             return False
         else:
-            open(fp, 'w').write(req.text)
+            with open(fp, 'w') as f:
+                f.write(req.text)
             return req.json()
 
 def get_comic(url):
@@ -34,7 +36,8 @@ def get_comic(url):
         if req.status_code != 200:
             return False
         else:
-            open(fp, 'wb').write(req.content)
+            with open(fp, 'wb') as f:
+                f.write(req.content)
             return ui.Image.from_data(req.content)
 
 def load_comic(view, num):
@@ -77,9 +80,11 @@ def rand(sender):
 
 try:
     latest = requests.get('http://xkcd.com/info.0.json'.format(id)).json()['num']
-    open('cache/latest', 'w').write(str(latest))
+    with open('cache/latest', 'w') as f:
+        f.write(str(latest))
 except requests.exceptions.ConnectionError:
-    latest = int(open('cache/latest').read())
+    with open('cache/latest') as f:
+        latest = int(f.read())
 
 v = ui.load_view()
 v.current = latest
