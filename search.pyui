@@ -1,0 +1,63 @@
+[
+  {
+    "selected" : false,
+    "frame" : "{{0, 0}, {240, 240}}",
+    "class" : "View",
+    "nodes" : [
+      {
+        "selected" : false,
+        "frame" : "{{0, 0}, {240, 32}}",
+        "class" : "TextField",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "uuid" : "D279AE6A-4CC5-473A-8455-6D576CAE1889",
+          "font_size" : 17,
+          "corner_radius" : 0,
+          "frame" : "{{20, 104}, {200, 32}}",
+          "border_color" : "RGBA(0.752358,0.752358,0.752358,1.000000)",
+          "border_width" : 1,
+          "custom_attributes" : "{\n    'action': search\n}",
+          "alignment" : "left",
+          "autocorrection_type" : "no",
+          "placeholder" : "Search",
+          "font_name" : "<System>",
+          "spellchecking_type" : "no",
+          "class" : "TextField",
+          "name" : "txt_search",
+          "flex" : "WB"
+        }
+      },
+      {
+        "selected" : false,
+        "frame" : "{{0, 32}, {240, 208}}",
+        "class" : "TableView",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "flex" : "WH",
+          "data_source_items" : "",
+          "data_source_font_size" : 18,
+          "frame" : "{{20, 20}, {200, 200}}",
+          "uuid" : "6F5BE4FD-BBE8-4682-B641-B19E04A7808B",
+          "data_source_number_of_lines" : 1,
+          "class" : "TableView",
+          "data_source_delete_enabled" : false,
+          "background_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
+          "name" : "tbl_search",
+          "row_height" : 44
+        }
+      }
+    ],
+    "attributes" : {
+      "flex" : "",
+      "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "name" : "Search",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)"
+    }
+  }
+]
