@@ -6,7 +6,7 @@
     "nodes" : [
       {
         "selected" : false,
-        "frame" : "{{46, 6}, {148, 32}}",
+        "frame" : "{{6, 6}, {228, 32}}",
         "class" : "Label",
         "nodes" : [
 
@@ -106,11 +106,11 @@
 
         ],
         "attributes" : {
-          "name" : "comic",
+          "class" : "ImageView",
           "frame" : "{{70, 70}, {100, 100}}",
           "uuid" : "30A5BD18-2EB2-4362-A92A-137E5A8426A7",
+          "name" : "comic",
           "custom_attributes" : "{\n    'content_mode': ui.CONTENT_SCALE_ASPECT_FIT\n}",
-          "class" : "ImageView",
           "flex" : "WH"
         }
       },
@@ -149,53 +149,15 @@
           "font_size" : 15,
           "name" : "btn_random"
         }
-      },
-      {
-        "selected" : false,
-        "frame" : "{{6, 6}, {32, 32}}",
-        "class" : "Button",
-        "nodes" : [
-
-        ],
-        "attributes" : {
-          "flex" : "",
-          "action" : "lambda _: nav.push_view(search_view)",
-          "name" : "btn_search",
-          "frame" : "{{80, 104}, {80, 32}}",
-          "title" : "",
-          "uuid" : "F1081300-66B6-48E3-9FBA-C6E3ACB1F6DB",
-          "class" : "Button",
-          "font_size" : 15,
-          "image_name" : "iob:ios7_search_strong_256"
-        }
-      },
-      {
-        "selected" : false,
-        "frame" : "{{202, 6}, {32, 32}}",
-        "class" : "Button",
-        "nodes" : [
-
-        ],
-        "attributes" : {
-          "flex" : "LB",
-          "image_name" : "iob:share_256",
-          "action" : "share",
-          "frame" : "{{80, 104}, {80, 32}}",
-          "title" : "Button",
-          "class" : "Button",
-          "uuid" : "BC948C74-9D94-4667-86D7-510BC6D07DFA",
-          "font_size" : 15,
-          "name" : "button1"
-        }
       }
     ],
     "attributes" : {
       "flex" : "",
       "enabled" : true,
-      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
-      "name" : "XKCD",
       "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
-      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)"
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "XKCD"
     }
   }
 ]
