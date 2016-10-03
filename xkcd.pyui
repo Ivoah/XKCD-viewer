@@ -6,25 +6,6 @@
     "nodes" : [
       {
         "selected" : false,
-        "frame" : "{{6, 6}, {228, 32}}",
-        "class" : "Label",
-        "nodes" : [
-
-        ],
-        "attributes" : {
-          "flex" : "W",
-          "font_size" : 18,
-          "frame" : "{{45, 104}, {150, 32}}",
-          "uuid" : "DF42035C-C23C-4707-9DBA-E829F44C8EEA",
-          "text" : "Loading comic...",
-          "alignment" : "center",
-          "class" : "Label",
-          "name" : "title",
-          "font_name" : "<System>"
-        }
-      },
-      {
-        "selected" : false,
         "frame" : "{{6, 202}, {80, 32}}",
         "class" : "Button",
         "nodes" : [
@@ -100,23 +81,23 @@
       },
       {
         "selected" : false,
-        "frame" : "{{6, 46}, {228, 106}}",
+        "frame" : "{{6, 6}, {228, 146}}",
         "class" : "ImageView",
         "nodes" : [
 
         ],
         "attributes" : {
-          "class" : "ImageView",
+          "custom_attributes" : "{\n    'content_mode': ui.CONTENT_SCALE_ASPECT_FIT\n}",
           "frame" : "{{70, 70}, {100, 100}}",
           "uuid" : "30A5BD18-2EB2-4362-A92A-137E5A8426A7",
+          "class" : "ImageView",
           "name" : "comic",
-          "custom_attributes" : "{\n    'content_mode': ui.CONTENT_SCALE_ASPECT_FIT\n}",
           "flex" : "WH"
         }
       },
       {
         "selected" : false,
-        "frame" : "{{6, 46}, {228, 106}}",
+        "frame" : "{{6, 6}, {228, 146}}",
         "class" : "Button",
         "nodes" : [
 
@@ -154,10 +135,10 @@
     "attributes" : {
       "flex" : "",
       "enabled" : true,
-      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
-      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
-      "name" : "XKCD"
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "name" : "XKCD",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)"
     }
   }
 ]
