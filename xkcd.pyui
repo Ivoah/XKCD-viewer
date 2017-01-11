@@ -14,13 +14,13 @@
         "attributes" : {
           "action" : "prev",
           "flex" : "RT",
-          "image_name" : "iob:chevron_left_256",
+          "name" : "btn_prev",
           "frame" : "{{80, 104}, {80, 32}}",
           "title" : "",
           "class" : "Button",
           "uuid" : "5E18F8FC-574F-4D20-8CF2-049A0268762F",
-          "name" : "btn_prev",
-          "font_size" : 15
+          "font_size" : 15,
+          "image_name" : "iob:chevron_left_256"
         }
       },
       {
@@ -33,13 +33,13 @@
         "attributes" : {
           "flex" : "LT",
           "action" : "next",
-          "image_name" : "iob:chevron_right_256",
+          "name" : "btn_next",
           "frame" : "{{80, 104}, {80, 32}}",
           "title" : "",
           "class" : "Button",
           "uuid" : "E0429C7F-380A-45F0-B0C7-34D3E1590B1E",
-          "name" : "btn_next",
-          "font_size" : 15
+          "font_size" : 15,
+          "image_name" : "iob:chevron_right_256"
         }
       },
       {
@@ -51,14 +51,14 @@
         ],
         "attributes" : {
           "flex" : "LRT",
-          "font_size" : 18,
+          "font_name" : "<System>",
           "frame" : "{{45, 104}, {150, 32}}",
           "uuid" : "FBBA76AF-D9D4-414A-AEB0-E13F2009BACD",
           "text" : "#",
           "alignment" : "center",
           "class" : "Label",
           "name" : "comic_num",
-          "font_name" : "<System>"
+          "font_size" : 18
         }
       },
       {
@@ -89,14 +89,14 @@
         "attributes" : {
           "custom_attributes" : "{\n    'content_mode': ui.CONTENT_SCALE_ASPECT_FIT\n}",
           "frame" : "{{70, 70}, {100, 100}}",
-          "uuid" : "30A5BD18-2EB2-4362-A92A-137E5A8426A7",
+          "flex" : "WH",
           "class" : "ImageView",
           "name" : "comic",
-          "flex" : "WH"
+          "uuid" : "30A5BD18-2EB2-4362-A92A-137E5A8426A7"
         }
       },
       {
-        "selected" : false,
+        "selected" : true,
         "frame" : "{{6, 6}, {228, 146}}",
         "class" : "Button",
         "nodes" : [
@@ -133,12 +133,12 @@
       }
     ],
     "attributes" : {
-      "flex" : "",
-      "enabled" : true,
-      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
-      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
       "name" : "XKCD",
-      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)"
+      "enabled" : true,
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "flex" : ""
     }
   }
 ]

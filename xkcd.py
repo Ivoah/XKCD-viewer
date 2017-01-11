@@ -74,7 +74,7 @@ def search(sender):
     files = sorted(glob.glob('*.json'), key = lambda f: int(f.split('.')[0]))
     num_files = len(files)
     for i, file in enumerate(files):
-        sender.superview['pie'].set_value(i/num_files)
+        sender.superview['pie'].value = i/num_files
         with open(file) as f:
             comic = json.load(f)
             found = True
@@ -82,7 +82,7 @@ def search(sender):
                 if word not in ' '.join([str(v) for v in comic.values()]).lower():
                     found = False
             if found: sender.superview['tbl_search'].data_source.items.append('{num}: {title}'.format(**comic))
-    sender.superview['pie'].set_value(0)
+    sender.superview['pie'].value = 0
 
 @ui.in_background
 def select_comic(sender):
@@ -149,7 +149,6 @@ nav = ui.NavigationView(main_view)
 
 search_view = ui.load_view('../search')
 search_view['tbl_search'].data_source.items = []
-search_view['tbl_search'].data_source.action = select_comic
 search_view.right_button_items = [
     ui.ButtonItem('All', None, search_all)
 ]

@@ -13,7 +13,7 @@
         ],
         "attributes" : {
           "uuid" : "D279AE6A-4CC5-473A-8455-6D576CAE1889",
-          "flex" : "WB",
+          "font_size" : 17,
           "corner_radius" : 0,
           "frame" : "{{20, 104}, {200, 32}}",
           "border_color" : "RGBA(0.752358,0.752358,0.752358,1.000000)",
@@ -26,54 +26,55 @@
           "spellchecking_type" : "no",
           "class" : "TextField",
           "name" : "txt_search",
-          "font_size" : 17
+          "flex" : "WB"
         }
       },
       {
-        "selected" : false,
+        "selected" : true,
         "frame" : "{{0, 32}, {240, 208}}",
         "class" : "TableView",
         "nodes" : [
 
         ],
         "attributes" : {
-          "flex" : "WH",
-          "data_source_items" : "",
-          "row_height" : 44,
-          "frame" : "{{20, 20}, {200, 200}}",
           "uuid" : "6F5BE4FD-BBE8-4682-B641-B19E04A7808B",
+          "data_source_action" : "select_comic",
           "background_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
+          "frame" : "{{20, 20}, {200, 200}}",
+          "data_source_items" : "",
           "data_source_number_of_lines" : 1,
           "data_source_delete_enabled" : false,
-          "class" : "TableView",
           "data_source_font_size" : 18,
-          "name" : "tbl_search"
+          "row_height" : 44,
+          "class" : "TableView",
+          "name" : "tbl_search",
+          "flex" : "WH"
         }
       },
       {
-        "selected" : true,
+        "selected" : false,
         "frame" : "{{208, 0}, {32, 32}}",
         "class" : "View",
         "nodes" : [
 
         ],
         "attributes" : {
-          "name" : "pie",
-          "frame" : "{{70, 70}, {100, 100}}",
-          "flex" : "LB",
-          "custom_class" : "PieView.PieView",
           "class" : "View",
-          "uuid" : "A3B41F79-64A6-45FE-A353-A0743B3E3AA1"
+          "frame" : "{{70, 70}, {100, 100}}",
+          "uuid" : "A3B41F79-64A6-45FE-A353-A0743B3E3AA1",
+          "name" : "pie",
+          "custom_class" : "PieView.PieView",
+          "flex" : "LB"
         }
       }
     ],
     "attributes" : {
-      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "flex" : "",
       "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
       "name" : "Search",
-      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
-      "flex" : ""
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)"
     }
   }
 ]
