@@ -1,73 +1,117 @@
 [
   {
-    "selected" : false,
-    "frame" : "{{0, 0}, {240, 240}}",
-    "class" : "View",
     "nodes" : [
       {
-        "selected" : false,
-        "frame" : "{{6, 202}, {80, 32}}",
-        "class" : "Button",
         "nodes" : [
 
         ],
+        "frame" : "{{6, 202}, {50, 32}}",
+        "class" : "Button",
         "attributes" : {
           "action" : "prev",
           "flex" : "RT",
-          "name" : "btn_prev",
+          "border_width" : 0,
           "frame" : "{{80, 104}, {80, 32}}",
+          "font_size" : 15,
           "title" : "",
           "class" : "Button",
           "uuid" : "5E18F8FC-574F-4D20-8CF2-049A0268762F",
-          "font_size" : 15,
+          "corner_radius" : 0,
+          "name" : "btn_prev",
           "image_name" : "iob:chevron_left_256"
-        }
+        },
+        "selected" : false
       },
       {
-        "selected" : false,
-        "frame" : "{{154, 202}, {80, 32}}",
-        "class" : "Button",
         "nodes" : [
 
         ],
+        "frame" : "{{184, 202}, {50, 32}}",
+        "class" : "Button",
         "attributes" : {
           "flex" : "LT",
           "action" : "next",
-          "name" : "btn_next",
+          "border_width" : 0,
           "frame" : "{{80, 104}, {80, 32}}",
+          "font_size" : 15,
           "title" : "",
           "class" : "Button",
           "uuid" : "E0429C7F-380A-45F0-B0C7-34D3E1590B1E",
-          "font_size" : 15,
+          "corner_radius" : 0,
+          "name" : "btn_next",
           "image_name" : "iob:chevron_right_256"
-        }
+        },
+        "selected" : false
       },
       {
-        "selected" : false,
-        "frame" : "{{94, 202}, {52, 32}}",
-        "class" : "Label",
         "nodes" : [
 
         ],
+        "frame" : "{{144, 202}, {32, 32}}",
+        "class" : "Button",
         "attributes" : {
-          "flex" : "LRT",
+          "action" : "lambda _: share()",
+          "flex" : "LT",
+          "border_width" : 0,
+          "frame" : "{{80, 104}, {80, 32}}",
+          "font_size" : 15,
+          "title" : "",
+          "uuid" : "7DAEE96F-8119-45FD-8F8F-385C23926AF3",
+          "class" : "Button",
+          "corner_radius" : 0,
+          "name" : "share",
+          "image_name" : "iob:share_32"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{64, 202}, {32, 32}}",
+        "class" : "Button",
+        "attributes" : {
+          "action" : "favorite",
+          "flex" : "RT",
+          "border_width" : 0,
+          "frame" : "{{80, 104}, {80, 32}}",
+          "image_name" : "iob:ios7_heart_outline_32",
+          "title" : "",
+          "uuid" : "AFA36EFC-47C0-485A-8289-0B4696734E62",
+          "class" : "Button",
+          "corner_radius" : 0,
+          "font_size" : 15,
+          "name" : "fav"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{104, 202}, {32, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "WT",
+          "border_width" : 0,
           "font_name" : "<System>",
           "frame" : "{{45, 104}, {150, 32}}",
           "uuid" : "FBBA76AF-D9D4-414A-AEB0-E13F2009BACD",
           "text" : "#",
           "alignment" : "center",
           "class" : "Label",
-          "name" : "comic_num",
-          "font_size" : 18
-        }
+          "corner_radius" : 0,
+          "font_size" : 18,
+          "name" : "comic_num"
+        },
+        "selected" : false
       },
       {
-        "selected" : false,
-        "frame" : "{{6, 160}, {228, 34}}",
-        "class" : "Slider",
         "nodes" : [
 
         ],
+        "frame" : "{{6, 160}, {228, 34}}",
+        "class" : "Slider",
         "attributes" : {
           "flex" : "WT",
           "action" : "slider_changed",
@@ -77,68 +121,56 @@
           "uuid" : "23748325-9BFB-4843-9AF1-76A8D217E4D6",
           "value" : 0.5,
           "name" : "slider"
-        }
+        },
+        "selected" : false
       },
       {
-        "selected" : false,
-        "frame" : "{{6, 6}, {228, 146}}",
-        "class" : "ImageView",
         "nodes" : [
 
         ],
-        "attributes" : {
-          "custom_attributes" : "{\n    'content_mode': ui.CONTENT_SCALE_ASPECT_FIT\n}",
-          "frame" : "{{70, 70}, {100, 100}}",
-          "flex" : "WH",
-          "class" : "ImageView",
-          "name" : "comic",
-          "uuid" : "30A5BD18-2EB2-4362-A92A-137E5A8426A7"
-        }
-      },
-      {
-        "selected" : true,
-        "frame" : "{{6, 6}, {228, 146}}",
+        "frame" : "{{104, 202}, {32, 32}}",
         "class" : "Button",
-        "nodes" : [
-
-        ],
-        "attributes" : {
-          "flex" : "WH",
-          "action" : "alt",
-          "frame" : "{{80, 104}, {80, 32}}",
-          "title" : "",
-          "class" : "Button",
-          "uuid" : "76B3F381-271E-458F-ABAC-C51DCB3D71F9",
-          "font_size" : 15,
-          "name" : "btn_alt"
-        }
-      },
-      {
-        "selected" : false,
-        "frame" : "{{94, 202}, {52, 32}}",
-        "class" : "Button",
-        "nodes" : [
-
-        ],
         "attributes" : {
           "action" : "rand",
           "flex" : "WT",
+          "border_width" : 0,
           "frame" : "{{80, 104}, {80, 32}}",
           "title" : "",
           "class" : "Button",
           "uuid" : "D0BC8249-DFF2-41E3-9D77-BB1C0A389AF3",
+          "corner_radius" : 0,
           "font_size" : 15,
           "name" : "btn_random"
-        }
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{6, 6}, {228, 146}}",
+        "class" : "WebView",
+        "attributes" : {
+          "scales_to_fit" : true,
+          "frame" : "{{20, 20}, {200, 200}}",
+          "flex" : "WH",
+          "class" : "WebView",
+          "name" : "wv",
+          "uuid" : "149D0215-9D25-4A1E-B1A1-0549002FC1D0"
+        },
+        "selected" : false
       }
     ],
+    "frame" : "{{0, 0}, {240, 240}}",
+    "class" : "View",
     "attributes" : {
-      "name" : "XKCD",
-      "enabled" : true,
-      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
       "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "enabled" : true,
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "name" : "XKCD",
       "flex" : ""
-    }
+    },
+    "selected" : false
   }
 ]

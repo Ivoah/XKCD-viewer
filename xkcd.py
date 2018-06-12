@@ -1,18 +1,20 @@
 import ui
-import requests
 import io
-import dialogs
-import random
-import console
 import os
 import json
-import clipboard
 import glob
-import PieView
+import random
+import dialogs
+import console
+import requests
+import clipboard
 import objc_util
 
+image_search = False
+faves = []
+
 def get_info(num):
-    fp = '{}.json'.format(num)
+    fp = 'data/{}.json'.format(num)
     if os.path.exists(fp):
         with open(fp) as f:
             return json.load(f)
@@ -29,9 +31,9 @@ def get_info(num):
             return req.json()
 
 def get_comic(url):
-    fp = url.split('/')[-1]
+    fp = 'data/' + url.split('/')[-1]
     if os.path.exists(fp):
-        return ui.Image(fp)
+        return os.path.abspath(fp) #ui.Image(fp)
     else:
         try:
             req = requests.get(url)
@@ -42,12 +44,13 @@ def get_comic(url):
         else:
             with open(fp, 'wb') as f:
                 f.write(req.content)
-            return ui.Image.from_data(req.content)
+            return os.path.abspath(fp) #ui.Image.from_data(req.content)
 
 @ui.in_background
 def load_comic(view, num):
     if num == 404:
-        view['comic'].image = ui.Image('../loading.png')
+        #view['comic'].image = ui.Image('loading.png')
+        view['wv'].load_url(os.path.abspath('loading.png'))
         view.current = num
         view['comic_num'].text = str(num)
         view['slider'].value = num/latest
@@ -57,13 +60,19 @@ def load_comic(view, num):
     console.show_activity()
     comic = get_info(num)
     if comic:
-        view['comic'].image = ui.Image('../loading.png')
+        if num in faves:
+            view['fav'].image = ui.Image('iob:ios7_heart_32')
+        else:
+            view['fav'].image = ui.Image('iob:ios7_heart_outline_32')
+        #view['comic'].image = ui.Image('loading.png')
+        view['wv'].load_url(os.path.abspath('loading.png'))
         view.current = num
         view['comic_num'].text = str(num)
         view['slider'].value = num/latest
         view.comic = comic
         
-        view['comic'].image = get_comic(view.comic['img'])
+        #view['comic'].image = get_comic(view.comic['img'])
+        view['wv'].load_url(get_comic(view.comic['img']))
         objc_util.ObjCInstance(view.navigation_view).navigationController().topViewController().title = objc_util.ns(view.comic['title'])
     
     console.hide_activity()
@@ -71,23 +80,32 @@ def load_comic(view, num):
 @ui.in_background
 def search(sender):
     sender.superview['tbl_search'].data_source.items = []
-    files = sorted(glob.glob('*.json'), key = lambda f: int(f.split('.')[0]))
+    files = sorted((os.path.basename(f) for f in glob.glob('data/*.json')), key = lambda f: int(f.split('.')[0]))
     num_files = len(files)
+    results = []
+    sender.superview['gear'].start()
     for i, file in enumerate(files):
-        sender.superview['pie'].value = i/num_files
-        with open(file) as f:
+        with open('data/' + file) as f:
             comic = json.load(f)
             found = True
             for word in sender.text.lower().split():
                 if word not in ' '.join([str(v) for v in comic.values()]).lower():
                     found = False
-            if found: sender.superview['tbl_search'].data_source.items.append('{num}: {title}'.format(**comic))
-    sender.superview['pie'].value = 0
+            #if found: sender.superview['tbl_search'].data_source.items.append({
+            if found: results.append({
+                'title': '{num}: {title}'.format(**comic),
+                'image': get_comic(comic['img']) if image_search else None,
+                'num': comic['num'],
+                'accessory_type': 'detail_button'
+            })
+    sender.superview['tbl_search'].data_source.items = results
+    sender.superview['gear'].stop()
 
 @ui.in_background
 def select_comic(sender):
     nav.pop_view()
-    load_comic(main_view, int(sender.items[sender.selected_row].split(':')[0]))
+    load_comic(main_view, 
+sender.items[sender.selected_row]['num'])
 
 @ui.in_background
 def prev(sender):
@@ -99,66 +117,89 @@ def next(sender):
 
 @ui.in_background
 def slider_changed(sender):
-    load_comic(sender.superview, int(latest*sender.value) if int(latest*sender.value) > 0 else 1)
+    load_comic(sender.superview, int(latest*sender.value) if int(latest*sender.value) > 0 else 1) 
 
 @ui.in_background
-def alt(sender):
-    if not sender.superview.comic: return
-    ans = console.alert('{month}/{day}/{year}'.format(**sender.superview.comic), sender.superview.comic['alt'], 'Copy link', 'Explain')
+def alt(comic):
+    if not comic: return
+    ans = console.alert('{month}/{day}/{year}'.format(**comic), comic['alt'], 'Copy link', 'Explain')
     if ans == 1:
         #dialogs.share_url('http://xkcd.com/{}/'.format(sender.superview.current))
-        clipboard.set('http://xkcd.com/{}/'.format(sender.superview.current))
+        clipboard.set('http://xkcd.com/{}/'.format(comic['num']))
         console.hud_alert('Copied!')
     elif ans == 2:
-        explain_view.load_url('http://www.explainxkcd.com/wiki/index.php/{}'.format(sender.superview.current))
+        explain_view.load_url('http://www.explainxkcd.com/wiki/index.php/{}'.format(comic['num']))
         nav.push_view(explain_view)
 
 @ui.in_background
-def share(sender):
-    dialogs.share_image(main_view['comic'].image)
+def share():
+    dialogs.share_image(ui.Image(get_comic(main_view.comic['img'])))
 
 @ui.in_background
 def rand(sender):
     load_comic(sender.superview, random.randint(1, latest))
 
 @ui.in_background
-def search_all(sender):
-    search_view['tbl_search'].data_source.items = ['{num}: {title}'.format(**json.load(open(f))) for f in sorted(glob.glob('*.json'), key = lambda f: int(f.split('.')[0]))]
+def search_faves(sender):
+    search_view['tbl_search'].data_source.items = [{
+        'title': '{num}: {title}'.format(**get_info(num)),
+        'image': get_comic(get_info(num)['img']) if image_search else None,
+        'num': num,
+        'accessory_type': 'detail_button'
+    } for num in sorted(faves)]
 
-os.chdir('cache')
+def lat():
+    try:
+        l = requests.get('http://xkcd.com/info.0.json').json()['num']
+        with open('data/latest', 'w') as f:
+            f.write(str(l))
+    except requests.exceptions.ConnectionError:
+        with open('data/latest') as f:
+            l = int(f.read())
+    
+    return l
 
-try:
-    latest = requests.get('http://xkcd.com/info.0.json'.format(id)).json()['num']
-    with open('latest', 'w') as f:
-        f.write(str(latest))
-except requests.exceptions.ConnectionError:
-    with open('latest') as f:
-        latest = int(f.read())
+def favorite(sender):
+    try:
+        faves.remove(main_view.comic['num'])
+        main_view['fav'].image = ui.Image('iob:ios7_heart_outline_32')
+    except ValueError:
+        faves.append(main_view.comic['num'])
+        main_view['fav'].image = ui.Image('iob:ios7_heart_32')
+    with open('data/faves.json', 'w') as f:
+        json.dump(faves, f)
 
-
-main_view = ui.load_view('../xkcd')
-main_view.current = latest
-main_view.left_button_items = [
-    ui.ButtonItem(None, ui.Image('iob:ios7_search_strong_32'), lambda _: nav.push_view(search_view))
-]
-main_view.right_button_items = [
-    ui.ButtonItem(None, ui.Image('iob:share_32'), share)
-]
-
-nav = ui.NavigationView(main_view)
-
-search_view = ui.load_view('../search')
-search_view['tbl_search'].data_source.items = []
-search_view.right_button_items = [
-    ui.ButtonItem('All', None, search_all)
-]
-
-explain_view = ui.WebView()
-explain_view.name = 'Explain'
-explain_view.right_button_items = [
-    ui.ButtonItem(None, ui.Image('iob:chevron_right_32'), lambda _: explain_view.go_forward()),
-    ui.ButtonItem(None, ui.Image('iob:chevron_left_32'), lambda _: explain_view.go_back())
-]
-
-nav.present(hide_title_bar = False)
-load_comic(main_view, main_view.current)
+if __name__ == '__main__':
+    os.chdir(os.path.dirname(__file__))
+    
+    with open('data/faves.json') as f:
+        faves = json.load(f)
+        
+    latest = lat()
+    
+    main_view = ui.load_view('xkcd')
+    main_view.current = latest
+    main_view.left_button_items = [
+        ui.ButtonItem(None, ui.Image('iob:ios7_search_strong_32'), lambda _: nav.push_view(search_view))
+    ]
+    main_view.right_button_items = [
+        ui.ButtonItem(None, ui.Image('iob:ios7_information_outline_32'), lambda _: alt(main_view.comic))
+    ]
+    
+    nav = ui.NavigationView(main_view)
+    
+    search_view = ui.load_view('search')
+    search_view['tbl_search'].data_source.items = []
+    search_view.right_button_items = [
+        ui.ButtonItem('Favorites', None, search_faves)
+    ]
+    
+    explain_view = ui.WebView()
+    explain_view.name = 'Explain'
+    explain_view.right_button_items = [
+        ui.ButtonItem(None, ui.Image('iob:chevron_right_32'), lambda _: explain_view.go_forward()),
+        ui.ButtonItem(None, ui.Image('iob:chevron_left_32'), lambda _: explain_view.go_back())
+    ]
+    
+    nav.present(hide_title_bar = True)
+    load_comic(main_view, main_view.current)

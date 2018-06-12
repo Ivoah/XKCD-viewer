@@ -1,16 +1,12 @@
 [
   {
-    "selected" : false,
-    "frame" : "{{0, 0}, {240, 240}}",
-    "class" : "View",
     "nodes" : [
       {
-        "selected" : false,
-        "frame" : "{{0, 0}, {240, 32}}",
-        "class" : "TextField",
         "nodes" : [
 
         ],
+        "frame" : "{{0, 0}, {240, 32}}",
+        "class" : "TextField",
         "attributes" : {
           "uuid" : "D279AE6A-4CC5-473A-8455-6D576CAE1889",
           "font_size" : 17,
@@ -27,15 +23,15 @@
           "class" : "TextField",
           "name" : "txt_search",
           "flex" : "WB"
-        }
+        },
+        "selected" : false
       },
       {
-        "selected" : true,
-        "frame" : "{{0, 32}, {240, 208}}",
-        "class" : "TableView",
         "nodes" : [
 
         ],
+        "frame" : "{{0, 32}, {240, 208}}",
+        "class" : "TableView",
         "attributes" : {
           "uuid" : "6F5BE4FD-BBE8-4682-B641-B19E04A7808B",
           "data_source_action" : "select_comic",
@@ -46,35 +42,40 @@
           "data_source_delete_enabled" : false,
           "data_source_font_size" : 18,
           "row_height" : 44,
+          "data_source_accessory_action" : "lambda s: alt(get_info(s.items[s.tapped_accessory_row]['num']))",
           "class" : "TableView",
           "name" : "tbl_search",
           "flex" : "WH"
-        }
+        },
+        "selected" : false
       },
       {
-        "selected" : false,
-        "frame" : "{{208, 0}, {32, 32}}",
-        "class" : "View",
         "nodes" : [
 
         ],
+        "frame" : "{{208, 0}, {32, 32}}",
+        "class" : "View",
         "attributes" : {
-          "class" : "View",
+          "name" : "gear",
           "frame" : "{{70, 70}, {100, 100}}",
           "uuid" : "A3B41F79-64A6-45FE-A353-A0743B3E3AA1",
-          "name" : "pie",
-          "custom_class" : "PieView.PieView",
+          "custom_class" : "ui.ActivityIndicator",
+          "class" : "View",
           "flex" : "LB"
-        }
+        },
+        "selected" : true
       }
     ],
+    "frame" : "{{0, 0}, {240, 240}}",
+    "class" : "View",
     "attributes" : {
       "flex" : "",
       "enabled" : true,
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
       "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
-      "name" : "Search",
-      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)"
-    }
+      "name" : "Search"
+    },
+    "selected" : false
   }
 ]
